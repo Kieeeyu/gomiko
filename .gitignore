@@ -1,1 +1,36 @@
+# 编译产物
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.test
+*.out
+*.sh
+
+# 临时/缓存文件
+*.tmp
+*.swp
+*.swo
+*.log
+.DS_Store
+configs/*/~$*
+
+# 依赖管理
+vendor/
+!go.mod
+!go.sum
+
+# IDE/编辑器配置
 .idea/
+.vscode/
+*.sublime-workspace
+
+# Go工具生成目录
+tmp/
+debug.log
+
+# 用户指定忽略项
+cmd.txt
+output/
+demo/

@@ -1,6 +1,8 @@
 package gomiko
 
 import (
+	"strings"
+
 	"github.com/Ali-aqrabawi/gomiko/pkg/connections"
 	"github.com/Ali-aqrabawi/gomiko/pkg/lib/arista"
 	"github.com/Ali-aqrabawi/gomiko/pkg/lib/cisco"
@@ -8,8 +10,8 @@ import (
 	"github.com/Ali-aqrabawi/gomiko/pkg/lib/mikrotik"
 	"github.com/Ali-aqrabawi/gomiko/pkg/lib/sros"
 	"github.com/Ali-aqrabawi/gomiko/pkg/types"
+	"github.com/Kieeeyu/gomiko/pkg/lib/h3c"
 	"github.com/pkg/errors"
-	"strings"
 )
 
 func NewDevice(Host string, Username string, Password string, DeviceType string, Port uint8, Options ...DeviceOption) (types.Device, error) {
@@ -37,6 +39,8 @@ func NewDevice(Host string, Username string, Password string, DeviceType string,
 		device, err = mikrotik.NewDevice(connection, DeviceType)
 	} else if strings.Contains(DeviceType, "nokia_sros") {
 		device, err = sros.NewDevice(connection, DeviceType)
+	} else if strings.Contains(DeviceType, "h3c") {
+		device, err = h3c.NewDevice(connection, DeviceType)
 	} else {
 		return nil, errors.New("DeviceType not supported: " + DeviceType)
 	}
